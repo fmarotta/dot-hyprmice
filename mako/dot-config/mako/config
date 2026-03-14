@@ -1,0 +1,76 @@
+default-timeout=8000
+
+# --- Layout & Position ---
+# anchor=top-right
+# margin=12
+padding=10,15
+width=360
+height=120
+border-radius=10
+
+# --- Appearance ---
+background-color=#F6F6F6EB
+text-color=#1D1D1F
+border-size=1
+border-color=#0000001F
+progress-color=over #007AFF99
+
+# --- Typography ---
+# font=SF Pro Text 13
+
+# --- Icons ---
+icons=1
+icon-location=left
+icon-path=/usr/share/icons/hicolor
+max-icon-size=22
+
+# --- Behavior ---
+# default-timeout=5000
+# ignore-timeout=0
+# max-visible=5
+# sort=-time
+
+# --- Markup & Actions ---
+markup=1
+actions=1
+format=<b>%s</b>\n%b
+
+# --- Grouping ---
+group-by=app-name
+
+# # ============================================
+# #  Urgency: low — muted, dimmed appearance
+# # ============================================
+# [urgency=low]
+# background-color=#F6F6F6E6
+# text-color=#8E8E93
+# border-color=#00000015
+# border-size=1
+# default-timeout=3000
+
+# # ============================================
+# #  Urgency: normal — standard Sequoia card
+# # ============================================
+# [urgency=normal]
+# background-color=#F6F6F6F0
+# text-color=#1D1D1F
+# border-color=#00000020
+# border-size=1
+# default-timeout=5000
+
+# # ============================================
+# #  Urgency: critical — Apple red accent
+# # ============================================
+[urgency=critical]
+text-color=#FF3B30
+default-timeout=0
+
+# # ============================================
+# #  Hidden notifications indicator
+# # ============================================
+# [hidden]
+# format=(%h more)
+# background-color=#EBEBEB99
+# text-color=#8E8E93
+# border-color=#00000015
+# border-size=1

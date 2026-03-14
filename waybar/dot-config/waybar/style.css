@@ -1,0 +1,166 @@
+* {
+  /* font-family: inherit; */
+  font-family: "Noto Sans", sans-serif;
+  font-size: 12px;
+  color: black;
+  animation-timing-function: steps(12);
+}
+
+#waybar {
+  background: rgba(255, 255, 255, 0.33);
+}
+#waybar.bottom {
+  border-radius: 1rem;
+  /* padding: 4px; */
+  /* padding: 10px; */
+}
+
+tooltip {
+  background: #000000;
+}
+tooltip label {
+  color: #ffffff;
+}
+button {
+  background: none;
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+button:hover {
+  background: inherit;
+  border: inherit;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  transition: none;
+  -gtk-icon-shadow: none;
+  -gtk-icon-effect: none;
+}
+
+#waybar.top .modules-left * {
+  padding: 1px 6px 0 6px;
+}
+#waybar.top .modules-left #custom-launcher {
+  margin-left: 5px;
+  padding-right: 3px;
+}
+#waybar.top .modules-left #window {
+  padding: 0;
+}
+/*
+#waybar.top .modules-center * {
+  padding: 1px 0 0 0;
+}
+*/
+#waybar.top .modules-right * {
+  padding: 1px 8px 0 8px;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+#battery.warning:not(.charging), #battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#network.disconnected {
+  background-color: #f53c3c;
+}
+
+#temperature.critical {
+  background-color: #eb4d4b;
+}
+
+.modules-left {
+  border: 1px solid transparent; /* Without this, the box-shadow under custom/finder is not round. But why?! */
+}
+#custom-finder {
+  min-width: 43px;
+  background-image: url("assets/Arch_Linux__Crystal__icon.svg.png");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+  border-radius: 25px;
+  box-shadow: 0 25px 0 -18px black;
+}
+#custom-settings {
+  min-width: 43px;
+  background-image: url("assets/Nuvola_apps_kcmsystem.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#custom-trash {
+  min-width: 43px;
+  background-image: url("assets/Emojione1_1F5D1.svg.png");
+  background-repeat: no-repeat;
+  background-size: 95%;
+  background-position: center;
+}
+
+#waybar.bottom .modules-center button {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+#waybar.bottom .modules-center button:first-child {
+  padding-left: 0px;
+}
+#waybar.bottom .modules-center button.empty {
+  min-width: 0px;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+#workspaces .taskbar-window, #custom-finder, #custom-trash {
+  margin-bottom: 7px;
+}
+#workspaces .taskbar-window.active {
+  border-radius: 20px;
+  box-shadow: 0 25px 0 -15px black;
+}
+
+/* Menu config */
+menu {
+  background-color: rgba(246, 246, 246, 0.92);
+  border-radius: 6px;
+  padding: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+menuitem {
+  margin: 1px 0;
+  padding: 4px 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #1d1d1f;
+  transition: background 0.1s ease;
+}
+menuitem:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 122, 255, 0.92) 0%,
+    rgba(0, 100, 220, 0.95) 100%
+  );
+  box-shadow:
+    0 1px 3px rgba(0, 90, 200, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+menuitem * {
+  padding: 0;
+  margin: 0;
+}
+/* separator { */
+  /* background: rgba(255, 255, 255, 0.1); */
+  /* margin: 4px 10px; */
+/* } */

@@ -1,0 +1,213 @@
+/* TODO
+ * - CPU tooltip (can't be customized yet, see #4724)
+ * - VPN indicator (https://github.com/Alexays/Waybar/wiki/Module:-Custom:-Examples#vpn-indicator)
+ */
+[
+  {
+    "layer": "top",
+    "position": "top",
+    "height": 20,
+    "margin": 0,
+    "spacing": 0,
+    "modules-left": [
+      "custom/launcher",
+      "hyprland/window",
+      "custom/file",
+      "custom/edit",
+      "custom/view",
+      "custom/help"
+    ],
+    "modules-right": [
+      "idle_inhibitor",
+      "temperature",
+      "cpu",
+      "memory",
+      "network",
+      "bluetooth",
+      "wireplumber",
+      "backlight",
+      "battery",
+      "clock"
+    ],
+    // Modules Left
+    "custom/launcher": {
+      "format": "🍌",
+      "tooltip": false,
+      "menu": "on-click",
+      "menu-file": "~/.config/waybar/power-menu.xml",
+      "menu-actions": {
+        "shutdown": "hyprshutdown",
+        "suspend": "sudo systemctl suspend",
+        "hybernate": "sudo systemctl hybernate",
+      },
+    },
+    "hyprland/window": {
+      "format": "<span text_transform='capitalize'>{class}</span>",
+      "tooltip-format": "{title}",
+      "max-length": 20,
+      "rewrite": {
+        // "^(?!.*\\S).*": "Finder"
+        ".*><.*": "Finder"
+      },
+      "on-click": ""
+    },
+    "custom/file": {
+      "format": "File",
+      "on-click": "nemo"
+    },
+    "custom/edit": {
+      "format": "Edit",
+      "on-click": "papers"
+    },
+    "custom/view": {
+      "format": "View",
+      "on-click": "loupe"
+    },
+    "custom/help": {
+      "format": "Help",
+      "on-click": "gio open https://wiki.archlinux.org"
+    },
+    // Modules Right
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "temperature": {
+      "thermal-zone": 2,
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 70,
+      "format-critical": "{icon} {temperatureK}K",
+      "format": " {temperatureK}K",
+    },
+    "cpu": {
+      "format": " {usage}%",
+      "interval": 30,
+      // "tooltip-format": "NOT SUPPORTED YET (see #4724)",
+    },
+    "memory": {
+      "format": " {}%",
+      "tooltip-format": "Memory {used}GB/{total}GB ({percentage}%)\nSwap {swapUsed}GB/{swapTotal}GB ({swapPercentage}%)",
+      "interval": 30,
+    },
+    "network": {
+      "format-wifi": " {frequency}GHz ({signalStrength}%)",
+      "format-ethernet": " {ifname}",
+      "format-linked": " {ifname} (No IP)",
+      "format-disconnected": "Disconnected ⚠ {ifname}",
+      "format-alt": " {ifname}: {ipaddr}/{cidr}",
+      "tooltip-format": "{ifname}: inet {ipaddr}/{cidr} via {gwaddr}\nDown {bandwidthDownBits}bps, Up {bandwidthUpBits}bps",
+      "tooltip-format-wifi": "{essid} ({signaldBm}dBm)\n{ifname}: inet {ipaddr}/{cidr} via {gwaddr}\nDown {bandwidthDownBits}, Up {bandwidthUpBits}",
+    },
+    "bluetooth": {
+      "format-disabled": "",
+      "format-no-controller": "",
+      "tooltip-format": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+      "on-click": "",
+    },
+    "wireplumber": {
+      "scroll-step": 5,
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": " {icon} {volume}% {format_source}",
+      "format-bluetooth-muted": "  {icon} {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "default": [
+          "",
+          "",
+          ""
+        ]
+      },
+      "on-click": "helvum",
+      "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    },
+    "backlight": {
+      "format": "☀ {percent}%",
+      "on-click": "",
+    },
+    "battery": {
+      "states": {
+        "warning": 35,
+        "critical": 25
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "tooltip-format": "{timeTo}\nDrawing {power}W\nCharged for {cycles} cycles ({health}% healthy)",
+    },
+    "clock": {
+      "format": "{:%a %b %d %H:%M %p}",
+      "tooltip-format": "<small><tt>{calendar}</tt></small>",
+      "smooth-scrolling-threshold": 7,
+      "calendar": {
+        "mode-mon-col": 4,
+        "weeks-pos": "right",
+        "on-scroll": 1,
+      },
+      "actions": {
+        "on-click": "mode",
+        "on-click-right": "shift_reset",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down",
+      },
+    },
+  },
+  {
+    "layer": "top",
+    "position": "bottom",
+    "height": 52,
+    "width": 2,
+    "margin": 0,
+    "spacing": 0,
+    "modules-left": [
+      "custom/finder",
+    ],
+    "modules-center": [
+      "hyprland/workspaces",
+    ],
+    "modules-right": [
+      // "custom/settings",
+      "custom/trash",
+    ],
+    "custom/finder": {
+      "format": "<span><span>{}</span></span>",
+      "on-click": "wofi --show drun",
+      "tooltip": true,
+      "tooltip-format": "Finder",
+    },
+    "custom/settings": {
+      "format": "<span><span>{}</span></span>",
+      "on-click": "wofi --show drun",
+      "tooltip": true,
+      "tooltip-format": "Settings",
+    },
+    "custom/trash": {
+      "format": "<span><span>{}</span></span>",
+      "on-click": "wofi --show drun",
+      "tooltip": true,
+      "tooltip-format": "Trash",
+    },
+    "hyprland/workspaces": {
+      "format": "{windows}",
+      "on-click": "", // Needed to enable the pointer cursor
+      "workspace-taskbar": {
+        "enable": true,
+        "update-active-window": true,
+        "format": "{icon}",
+        "icon-size": 37,
+      },
+    },
+  }
+]
